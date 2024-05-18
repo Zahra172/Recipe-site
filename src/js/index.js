@@ -101,6 +101,11 @@ async function categories() {
     );
     let finalData = await response.json();
     allRecipe = finalData.categories;
+    
+  document.querySelector('.card').classList.remove('hidden');
+  document.querySelector('.search').classList.add('hidden');
+  document.querySelector('.contact-form').classList.add('hidden');
+  
     displayCategoty(allRecipe);
     console.log(allRecipe);
   } catch (error) {
@@ -156,6 +161,12 @@ async function Area() {
     let finalData = await response.json();
     allRecipe = finalData.meals;
     displayArea(allRecipe);
+    
+    document.querySelector('.card').classList.remove('hidden');
+    document.querySelector('.search').classList.add('hidden');
+    document.querySelector('.contact-form').classList.add('hidden');
+    
+
     console.log(allRecipe);
   } catch (error) {
     console.log("area errorr");
@@ -200,7 +211,14 @@ async function Ingredients() {
     );
     let finalData = await response.json();
     allRecipe = finalData.meals;
+
+   document.querySelector('.card').classList.remove('hidden');
+  document.querySelector('.search').classList.add('hidden');
+  document.querySelector('.contact-form').classList.add('hidden');
+    
+
     displayAllIngredient(allRecipe);
+    
   } catch (error) {
     console.log(" ingredients:", error);
   }
@@ -269,7 +287,7 @@ async function searchitem(event) {
     var response = await fetch(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${item}`
     );
-    var finalData = await response.json();
+    let finalData = await response.json();
     allRecipe = finalData.meals;
     display(allRecipe);
     document.getElementsByClassName("card")[0].classList.remove("hidden");
@@ -282,35 +300,73 @@ async function searchitem(event) {
 }
 
 //search by first letter
-var searchletter = document.getElementById("searchLetter");
+let searchletter = document.getElementById("searchLetter");
 
+// Function to handle form submission
 async function searchLetter(event) {
   event.preventDefault();
+  
+  let item = searchletter.value.trim();
+  
+  if (item.length !== 1) {
+    console.log("Please enter a single letter");
+    return;
+  }
 
-  var item = searchletter.value;
   try {
-    var response = await fetch(
+    let response = await fetch(
       `https://www.themealdb.com/api/json/v1/1/search.php?f=${item}`
     );
-    var finalData = await response.json();
+    let finalData = await response.json();
     allRecipe = finalData.meals;
+
+    if (!allRecipe) {
+      console.log("No recipes found");
+      return;
+    }
+
     display(allRecipe);
+
     document.getElementsByClassName("card")[0].classList.remove("hidden");
     document.querySelector(".search").classList.remove("hidden");
     document.querySelector(".search").classList.add('flex');
     console.log(allRecipe);
   } catch (error) {
-    console.log("mmmmm");
+    console.log("Error fetching data:", error);
   }
 }
+
+// Function to handle keyup event
+function handleKeyUp(event) {
+  if (event.key.length === 1) { // Ensure it's a single character
+    searchLetter(event);
+  }
+}
+
 /////////////////////////////////////////////////
 
 //contact
-function contactForm() {
-  document.getElementsByClassName("card")[0].classList.add("hidden");
-  document.querySelector(".search").classList.add("hidden");
+// function contactForm() {
+//   document.getElementsByClassName("card")[0].classList.add("hidden");
+//   document.querySelector(".search").classList.add("hidden");
 
-document.querySelector('.contact-form').classList.remove('hidden')
+// document.querySelector('.contact-form').classList.remove('hidden')
+// }
+function contactForm() {
+ 
+  console.log("Hiding card and search elements...");
+  document.querySelector('.card').classList.add('hidden');
+  document.querySelector('.search').classList.add('hidden');
+
+
+  console.log("Showing contact form...");
+  document.querySelector('.contact-form').classList.remove('hidden');
+  
+ 
+  console.log("Showing sidebar and menu items...");
+  $(".sidebar").animate({ left: "0px" }, 500);
+  $(".close").removeClass("fa-bars").addClass("fa-x");
+  $(".menue").css("display", "grid");
 }
 nameInput = document.getElementById("Name");
 emailInput = document.getElementById("email");
@@ -376,6 +432,7 @@ function validation(element) {
     
     } 
 }
+
 
 //jquery open side bar
 let sidebarWidth = $(".menue").innerWidth();
