@@ -1,0 +1,17 @@
+.home{
+    overflow: hidden;
+    
+}
+.home .layer{
+    top:100%;
+    transition: 1s;
+    
+}
+.home:hover .layer{
+    top:0;
+    transform: translateY(0);
+    transition: 1s;
+    height: 100%;
+    
+    
+}
