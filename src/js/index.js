@@ -101,11 +101,11 @@ async function categories() {
     );
     let finalData = await response.json();
     allRecipe = finalData.categories;
-    
-  document.querySelector('.card').classList.remove('hidden');
-  document.querySelector('.search').classList.add('hidden');
-  document.querySelector('.contact-form').classList.add('hidden');
-  
+
+    document.querySelector(".card").classList.remove("hidden");
+    document.querySelector(".search").classList.add("hidden");
+    document.querySelector(".contact-form").classList.add("hidden");
+
     displayCategoty(allRecipe);
     console.log(allRecipe);
   } catch (error) {
@@ -161,11 +161,10 @@ async function Area() {
     let finalData = await response.json();
     allRecipe = finalData.meals;
     displayArea(allRecipe);
-    
-    document.querySelector('.card').classList.remove('hidden');
-    document.querySelector('.search').classList.add('hidden');
-    document.querySelector('.contact-form').classList.add('hidden');
-    
+
+    document.querySelector(".card").classList.remove("hidden");
+    document.querySelector(".search").classList.add("hidden");
+    document.querySelector(".contact-form").classList.add("hidden");
 
     console.log(allRecipe);
   } catch (error) {
@@ -212,13 +211,11 @@ async function Ingredients() {
     let finalData = await response.json();
     allRecipe = finalData.meals;
 
-   document.querySelector('.card').classList.remove('hidden');
-  document.querySelector('.search').classList.add('hidden');
-  document.querySelector('.contact-form').classList.add('hidden');
-    
+    document.querySelector(".card").classList.remove("hidden");
+    document.querySelector(".search").classList.add("hidden");
+    document.querySelector(".contact-form").classList.add("hidden");
 
     displayAllIngredient(allRecipe);
-    
   } catch (error) {
     console.log(" ingredients:", error);
   }
@@ -265,7 +262,7 @@ async function IngredientsMeals(ingredient) {
 function showSearchInputs() {
   document.getElementsByClassName("card")[0].classList.add("hidden");
   document.querySelector(".search").classList.remove("hidden");
-  document.querySelector(".search").classList.add('flex');
+  document.querySelector(".search").classList.add("flex");
   // card.innerHTML =`
   // <div class="flex gap-2 my-10">
   //           <input onkeyup="searchitem()" id="searchName" type="text" placeholder="search by name" class="text-white w-full h-11 p-4 rounded-md text-lg bg-transparent border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block  focus:ring-1" />
@@ -292,7 +289,7 @@ async function searchitem(event) {
     display(allRecipe);
     document.getElementsByClassName("card")[0].classList.remove("hidden");
     document.querySelector(".search").classList.remove("hidden");
-    document.querySelector(".search").classList.add('flex');
+    document.querySelector(".search").classList.add("flex");
     console.log(allRecipe);
   } catch (error) {
     console.log("kkkk");
@@ -305,9 +302,9 @@ let searchletter = document.getElementById("searchLetter");
 // Function to handle form submission
 async function searchLetter(event) {
   event.preventDefault();
-  
+
   let item = searchletter.value.trim();
-  
+
   if (item.length !== 1) {
     console.log("Please enter a single letter");
     return;
@@ -329,7 +326,7 @@ async function searchLetter(event) {
 
     document.getElementsByClassName("card")[0].classList.remove("hidden");
     document.querySelector(".search").classList.remove("hidden");
-    document.querySelector(".search").classList.add('flex');
+    document.querySelector(".search").classList.add("flex");
     console.log(allRecipe);
   } catch (error) {
     console.log("Error fetching data:", error);
@@ -338,7 +335,8 @@ async function searchLetter(event) {
 
 // Function to handle keyup event
 function handleKeyUp(event) {
-  if (event.key.length === 1) { // Ensure it's a single character
+  if (event.key.length === 1) {
+    // Ensure it's a single character
     searchLetter(event);
   }
 }
@@ -353,16 +351,13 @@ function handleKeyUp(event) {
 // document.querySelector('.contact-form').classList.remove('hidden')
 // }
 function contactForm() {
- 
   console.log("Hiding card and search elements...");
-  document.querySelector('.card').classList.add('hidden');
-  document.querySelector('.search').classList.add('hidden');
-
+  document.querySelector(".card").classList.add("hidden");
+  document.querySelector(".search").classList.add("hidden");
 
   console.log("Showing contact form...");
-  document.querySelector('.contact-form').classList.remove('hidden');
-  
- 
+  document.querySelector(".contact-form").classList.remove("hidden");
+
   console.log("Showing sidebar and menu items...");
   $(".sidebar").animate({ left: "0px" }, 500);
   $(".close").removeClass("fa-bars").addClass("fa-x");
@@ -373,66 +368,58 @@ emailInput = document.getElementById("email");
 phoneInput = document.getElementById("phone");
 ageInput = document.getElementById("age");
 passInput = document.getElementById("password");
-repassInput = document.getElementById('repassword');
+repassInput = document.getElementById("repassword");
 infoContainer = [];
 
-
-let information ={
-    nname : nameInput.value,
-    email : emailInput.value,
-    phone : phoneInput.value,
-    age : ageInput.value,
-    pass : passInput.value,
-    repass : repassInput.value,
-}
-
+let information = {
+  nname: nameInput.value,
+  email: emailInput.value,
+  phone: phoneInput.value,
+  age: ageInput.value,
+  pass: passInput.value,
+  repass: repassInput.value,
+};
 
 function validation(element) {
-    let regix={
-        Name : /^[a-zA-Z]{3,10}$/,
-        email : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        phone : /^(002)?01[0125][0-9]{8}$/,
-        age : /^[1-9][0-9]?$|^100$/,
-        password : /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-        repassword : /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-    };
-    if (repassword.value !== password.value) {
-        console.log('no0000 match');
-        element.classList.add('focus:ring-t-indigo-950');
-        element.classList.remove('focus:ring-t-red-700');
-        element.nextElementSibling.classList.remove('hidden');
-         
-    } else {
-        
-        element.nextElementSibling.classList.add('hidden');
-    }
+  let regix = {
+    Name: /^[a-zA-Z]{3,10}$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    phone: /^(002)?01[0125][0-9]{8}$/,
+    age: /^[1-9][0-9]?$|^100$/,
+    password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+    repassword: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+  };
+  if (repassword.value !== password.value) {
+    console.log("no0000 match");
+    element.classList.add("focus:ring-t-indigo-950");
+    element.classList.remove("focus:ring-t-red-700");
+    element.nextElementSibling.classList.remove("hidden");
+  } else {
+    element.nextElementSibling.classList.add("hidden");
+  }
 
-    
+  if (regix[element.id].test(element.value) === true) {
+    console.log("match");
+    element.classList.add("focus:ring-t-red-700");
+    element.classList.remove("focus:ring-t-indigo-950");
+    element.nextElementSibling.classList.add("hidden");
+  } else {
+    console.log("no match");
+    element.classList.add("focus:ring-t-indigo-950");
+    element.classList.remove("focus:ring-t-red-700");
+    element.nextElementSibling.classList.remove("hidden");
+  }
 
-    if(regix[element.id].test(element.value) === true){
-        console.log('match')
-        element.classList.add('focus:ring-t-red-700');
-        element.classList.remove('focus:ring-t-indigo-950');
-        element.nextElementSibling.classList.add('hidden');
+  let allValid = Object.keys(regix).every((id) =>
+    regix[id].test(document.getElementById(id).value)
+  );
 
-    }else{
-        console.log('no match')
-        element.classList.add('focus:ring-t-indigo-950');
-        element.classList.remove('focus:ring-t-red-700');
-        element.nextElementSibling.classList.remove('hidden');
-
-    }
-
-    let allValid = Object.keys(regix).every(id => regix[id].test(document.getElementById(id).value));
-
-    if(allValid){
-        document.getElementById('dis').removeAttribute("disabled");
-    }else{
-        document.getElementById('dis').setAttribute("disabled" , "disabled");
-    
-    } 
+  if (allValid) {
+    document.getElementById("dis").removeAttribute("disabled");
+  } else {
+    document.getElementById("dis").setAttribute("disabled", "disabled");
+  }
 }
-
 
 //jquery open side bar
 let sidebarWidth = $(".menue").innerWidth();
